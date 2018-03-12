@@ -1,0 +1,51 @@
+############################
+# Add list of servers here #
+############################
+declare -A SERVERS
+SERVERS[DEFAULT]="0.0.0.0"
+
+#############
+# Dev alias #
+#############
+alias getpid="ps -au $(whoami) | grep $1"
+alias whereis="grep -rni ${1} ."
+alias refresh="source ~/.zshrc"
+
+#################
+# Dev Functions #
+#################
+connect() {
+    if [[ $# == 1 ]]; then
+        ssh -i ~/.key_${1} ${1}@${SERVERS[DEFAULT]}
+    elif [[ $# == 2 ]]; then
+        ssh -i ~/.key_${2} ${1}@${SERVERS[$2]}
+    else
+        echo "Connect to the remote server using ssh.\nUsage: connect <username> [servername]";
+        _server_list
+    fi
+}
+
+mconnect() {
+    if [[ $# == 1 ]]; then
+        mosh --ssh="ssh -i ~/.key_${1}" ${1}@${SERVERS[DEFAULT]}
+    elif [[ $# == 2 ]]; then
+        mosh --ssh="ssh -i ~/.key_${2}" ${1}@${SERVERS[$2]}
+    else
+        echo "Connect to the remote server using mosh.\nUsage: mconnect <username> [servername]"
+        _server_list
+    fi
+}
+
+_server_list() {
+    for i in ${(k)SERVERS}; do
+        echo "${i}: ${SERVERS[$i]}"
+    done
+}
+
+attach() {
+    if [[ -n $1 ]]; then
+        tmux attach-session -t $1
+    else
+        tmux a
+    fi
+}

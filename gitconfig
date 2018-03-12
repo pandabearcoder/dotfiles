@@ -1,0 +1,21 @@
+[user]
+    name =
+    email =
+[alias]
+    dif = icdiff
+    cko = checkout
+    cmsg = commit -m
+    wdiff = diff --word-diff
+    st = status
+    amend = commit --amend
+    ls = log --pretty=format:"%C(green)%h\\ %Creset%s%Cblue\\ [%cn]\\ %C(yellow)[%ad]%Cred%d" --decorate --date=relative
+    assume = update-index --assume-unchanged
+    unassume = update-index --no-assume-unchanged
+    remotes = remote -v
+    stash-ustg = stash --keep-index
+    stash-utrk = stash --include-untracked
+    stash-all = stash --all
+    recall = !git ls | grep -i 'username' | less
+    whereis = log -U0 -S
+[core]
+    editor = vim
