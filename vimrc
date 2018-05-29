@@ -1,10 +1,11 @@
-" ##### GENERAL SETTINGS
+" Vundle Settings
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
+" General Settings
 set encoding=utf-8
-
 set showmode
 set number
 set textwidth=100
@@ -99,14 +100,11 @@ set statusline+=\ %=%Y\ \ %p%%\ :\ \ %l/%L\ :\ \ %c
 :noremap <Leader>l :set nonumber!<CR>
 " #### END TOGGLE
 
-" Yapf python code formatter
-autocmd FileType python nnoremap <Leader>= :0,$!yapf<CR>
-" END Yapf
-
 "Ale Settings
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 " END Ale
 
-" Completer settings
-let g:completor_node_library = '/usr/bin/node'
+" Vim packages
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'w0rp/ale'
