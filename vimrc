@@ -1,10 +1,12 @@
 " Vundle Settings
 set nocompatible
 filetype off
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " General Settings
+syntax on
 set encoding=utf-8
 set showmode
 set number
@@ -45,14 +47,6 @@ autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
 " ##### END GENERAL SETTINGS
 
 " ##### UTILITY SETTINGS
-
-" Load pathogen and plugins if exists
-if !empty(glob(expand("~/.vim/autoload"))) && filereadable(expand("~/.vim/bundle"))
-    filetype off
-    call pathogen#infect()
-    call pathogen#helptags()
-    filetype plugin indent on
-endif
 
 " Auto-reload of .vimrc
 autocmd! bufwritepost ~/.vimrc source %
@@ -108,3 +102,7 @@ let g:ale_sign_warning = '--'
 " Vim packages
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'w0rp/ale'
+Plugin 'posva/vim-vue'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
